@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../utils/tiposConversion.dart';
 
-
-
 class HomeScreen extends StatefulWidget {
    
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,6 +13,74 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  String equation = "0";
+  String result = "0";
+  double equationFontSize = 38.0;
+  double resultFontSize = 48.0;
+
+  buttonPressed(String buttonText){
+    setState(() {
+      if(buttonText == "C"){
+        equation = "0";
+        result = "0";
+        equationFontSize = 38.0;
+        resultFontSize = 48.0;
+      }else if(buttonText == "b"){
+        equationFontSize = 48.0;
+        resultFontSize = 38.0;
+        equation = equation.substring(0, equation.length - 1);
+        if(equation == ""){
+          equation = "0";
+        }
+        
+      }else if(buttonText == "="){
+        equationFontSize = 38.0;
+        resultFontSize = 48.0;
+        if(_appbarTitle == "Longitud"){
+          if(selectedValue1 == "Metros" && selectedValue2 == "Metros"){
+            
+          }
+        }
+
+      }else{
+        equationFontSize = 48.0;
+        resultFontSize = 38.0;
+        if(equation == "0"){
+          equation = buttonText;
+        }else{
+          equation = equation + buttonText;
+        }
+      }
+    });
+  }
+
+  Widget _buttonRounded({String? title, double padding = 20, IconData? icon, Color? iconColor, Color? textColor}) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+        child: NeuContainer(
+          child: Container(
+            width: padding * 2,
+            height: padding * 2,
+            child: Center(
+              child: (title != null && title != 'b') ? Text(
+                '${title}',
+                style: TextStyle(
+                  color: textColor != null ? textColor : Colors.white,
+                  fontSize: 30
+                ),
+                ):
+                Icon(icon, color: iconColor, size: 30,)
+            ),
+          ), 
+          borderRadius: BorderRadius.circular(40), 
+          padding: EdgeInsets.all(padding)
+        ),
+        onTap: () => buttonPressed(title!),
+      ),
+    );
+  }
+
   String? selectedValue1 = null;
   String? selectedValue2 = null;
 
@@ -24,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<String> _conversion = TiposConversionData.tipos.map((e) => e.nombre).toList();
 
-  //TODO: Crear las listas de DropDownMenuItem para cada tipo de unidad y que cambien con forme a la unidad seleccionada
+  
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.transparent,
         ),
 
+        //*Barra lateral
         drawer: Drawer(
           backgroundColor: Colors.transparent,
           child: ListView.builder(
@@ -77,15 +144,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                _appbarTitle != 'Calculadora'? Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //* Dropdown menus
                     children: [
                       Column(
                         children: [
+
                           NeuContainer(
                             child: Container(
-                              width: 100,
+                              width: 110,
                               height: 20,
                               child: Center(
                                 child: DropdownButton(
@@ -111,16 +180,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           
                         ],
                       ),
+
                       Column(
                         children: [
-                          Text('A')
+                          //Text('A', style: TextStyle(fontSize: 25),)
+                          Icon(Icons.arrow_forward_outlined, size: 35,)
                         ],
                       ),
+
                       Column(
                         children: [
+
                           NeuContainer(
                             child: Container(
-                              width: 100,
+                              width: 110,
                               height: 20,
                               child: Center(
                                 child: DropdownButton(
@@ -143,38 +216,44 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(40), 
                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10)
                           ),
+
                         ],
                       ),
+
                     ],
                   ),
-                ),
-                Container(
+                ): Container(height: 40,),
+
+                //* Show result
+                _appbarTitle != "Calculadora" ? Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Align(
+                      Align(
                         alignment: Alignment.centerRight,
                         child: Text(
-                          '6.05',
-                          style: TextStyle(fontSize: 55),
+                          equation,
+                          style: TextStyle(fontSize: equationFontSize),
                         ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             '=',
                             style: TextStyle(fontSize: 35),
                           ),
                           Text(
-                            '10*15+12',
-                            style: TextStyle(fontSize: 20),
+                            result,
+                            style: TextStyle(fontSize: resultFontSize),
                           )
                         ],
                       )
                     ],
                   ),
-                ),
+                ):Container(),
+
+                //* Teclado
                 Container(
                   child: Column(
                     children: [
@@ -198,7 +277,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           _buttonRounded(title: '6'),
                           _buttonRounded(
                             icon: Icons.backspace_outlined,
-                            iconColor: Colors.greenAccent
+                            iconColor: Colors.green,
+                            title: 'b'
                           ),
                         ],
                       ),
@@ -221,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           _buttonRounded(title: '0'),
                           _blankButton(),
                           _buttonRounded(
-                            title: ',',
+                            title: '.',
                             textColor: Colors.green
                           )
                         ],
@@ -238,29 +318,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget _buttonRounded({String? title, double padding = 20, IconData? icon, Color? iconColor, Color? textColor}) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: NeuContainer(
-      child: Container(
-        width: padding * 2,
-        height: padding * 2,
-        child: Center(
-          child: title != null ? Text(
-            '${title}',
-            style: TextStyle(
-              color: textColor != null ? textColor : Colors.white,
-              fontSize: 30
-            ),
-            ):
-            Icon(icon, color: iconColor, size: 30,)
-        ),
-      ), 
-      borderRadius: BorderRadius.circular(40), 
-      padding: EdgeInsets.all(padding)
-    ),
-  );
-}
+
 
 Widget _blankButton({double padding = 20}) {
   return Padding(
