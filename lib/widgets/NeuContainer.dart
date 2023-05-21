@@ -7,8 +7,10 @@ class NeuContainer extends StatefulWidget {
   final Widget child;
   final BorderRadius borderRadius;
   final EdgeInsetsGeometry padding;
+  final Color? backgrounColor;
+  final bool? shadow;
    
-  const NeuContainer({Key? key, required this.child, required this.borderRadius, required this.padding}) : super(key: key);
+  const NeuContainer({Key? key, required this.child, required this.borderRadius, required this.padding, this.backgrounColor, this.shadow}) : super(key: key);
 
   @override
   State<NeuContainer> createState() => _NeuContainerState();
@@ -38,9 +40,9 @@ class _NeuContainerState extends State<NeuContainer> {
       child: Container(
         padding: widget.padding,
         decoration: BoxDecoration(
-          color: colorDark,
+          color: widget.backgrounColor != null ? widget.backgrounColor: colorDark,
           borderRadius: widget.borderRadius,
-          boxShadow: isPressed
+          boxShadow: isPressed || widget.shadow == false
           ? null
           : [
             const BoxShadow(

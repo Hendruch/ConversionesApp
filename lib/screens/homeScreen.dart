@@ -1,4 +1,5 @@
 import 'package:app_conversiones/widgets/NeuContainer.dart';
+import 'package:app_conversiones/widgets/stepsContainer.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/tiposConversion.dart';
@@ -17,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String result = "0";
   double equationFontSize = 38.0;
   double resultFontSize = 48.0;
+  double d = 0.0;
+  int precision = 2;
 
   buttonPressed(String buttonText){
     setState(() {
@@ -37,8 +40,202 @@ class _HomeScreenState extends State<HomeScreen> {
         equationFontSize = 38.0;
         resultFontSize = 48.0;
         if(_appbarTitle == "Longitud"){
-          if(selectedValue1 == "Metros" && selectedValue2 == "Metros"){
+          if(selectedValue1 == "Metros"){
+            if(selectedValue2 == "Metros"){
+
+            }else if(selectedValue2 == "Pies"){
+              d = double.parse(equation) * 3.2808;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Pulgadas"){
+              d = double.parse(equation) * 39.37;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Centimetros"){
+              d = double.parse(equation) * 100;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Pies"){
+            if(selectedValue2 == "Pies"){
+
+            }else if(selectedValue2 == "Metros"){
+              d = double.parse(equation) * 0.3048;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Pulgadas"){
+              d = double.parse(equation) * 12;
+              result = d.toStringAsFixed(8);
+            }else if(selectedValue2 == "Centimetros"){
+              d = double.parse(equation) * 30.48;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Pulgadas"){
+            if(selectedValue2 == "Pulgadas"){
+
+            }else if(selectedValue2 == "Metros"){
+              d = double.parse(equation) / 39.37;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Pies"){
+              d = double.parse(equation) / 12;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Centimetros"){
+              d = double.parse(equation) * 2.54;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Centimetros"){
+            if(selectedValue2 == "Centimetros"){
+
+            }else if(selectedValue2 == "Metros"){
+              d = double.parse(equation) / 100;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Pies"){
+              d = double.parse(equation) / 30.48;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Pulgadas"){
+              d = double.parse(equation) / 2.54;
+              result = d.toStringAsFixed(precision);
+            }
+          }
+        }else if(_appbarTitle == "Tiempo"){
+          if(selectedValue1 == "Horas"){
+            if(selectedValue2 == "Horas"){
+              
+            }else if(selectedValue2 == "Minutos"){
+              d = double.parse(equation) * 60;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Segundos"){
+              d = double.parse(equation) * 3600;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Minutos"){
+            if(selectedValue2 == "Minutos"){
+              
+            }else if(selectedValue2 == "Horas"){
+              d = double.parse(equation) / 60;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Segundos"){
+              d = double.parse(equation) * 60;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Segundos"){
+            if(selectedValue2 == "Segundos"){
+              
+            }else if(selectedValue2 == "Horas"){
+              d = double.parse(equation) / 3600;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Minutos"){
+              d = double.parse(equation) / 60;
+              result = d.toStringAsFixed(precision);
+            }
+          }
+        }else if(_appbarTitle == "Masa"){
+          if(selectedValue1 == "Kilogramos"){
+            if(selectedValue2 == "Kilogramos"){
+              
+            }else if(selectedValue2 == "Libras"){
+              d = double.parse(equation) * 2.20462;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Gramos"){
+              d = double.parse(equation) * 1000;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Libras"){
+            if(selectedValue2 == "Libras"){
             
+            }else if(selectedValue2 == "Kilogramos"){
+              d = double.parse(equation) / 2.20462;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Gramos"){
+              d = double.parse(equation) * 453.592;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Gramos"){
+            if(selectedValue2 == "Gramos"){
+            
+            }else if(selectedValue2 == "Kilogramos"){
+              d = double.parse(equation) / 1000;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Libras"){
+              d = double.parse(equation) / 453.592;
+              result = d.toStringAsFixed(precision);
+            }
+          }
+        }else if(_appbarTitle == "Área"){
+          if(selectedValue1 == "M^2"){
+            if(selectedValue2 == "M^2"){
+            
+            }else if(selectedValue2 == "Hectareas"){
+              d = double.parse(equation) / 10000;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Acres"){
+              d = double.parse(equation) / 4047;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Hectareas"){
+            if(selectedValue2 == "Hectareas"){
+            
+            }else if(selectedValue2 == "M^2"){
+              d = double.parse(equation) * 10000;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Acres"){
+              d = double.parse(equation) * 2.417;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Acres"){
+            if(selectedValue2 == "Acres"){
+            
+            }else if(selectedValue2 == "M^2"){
+              d = double.parse(equation) * 4047;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Hectareas"){
+              d = double.parse(equation) / 2.417;
+              result = d.toStringAsFixed(precision);
+            }
+          }
+        }else if(_appbarTitle == "Volumen"){
+          if(selectedValue1 == "Litros"){
+            if(selectedValue2 == "Litros"){
+
+            }else if(selectedValue2 == "M^3"){
+              d = double.parse(equation) / 1000;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Onzas"){
+              d = double.parse(equation) * 35.195;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "M^3"){
+            if(selectedValue2 == "M^3"){
+
+            }else if(selectedValue2 == "Litros"){
+              d = double.parse(equation) * 1000;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "Onzas"){
+              d = double.parse(equation) * 35195;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Onzas"){
+            if(selectedValue2 == "Onzas"){
+
+            }else if(selectedValue2 == "Litros"){
+              d = double.parse(equation) / 35.195;
+              result = d.toStringAsFixed(precision);
+            }else if(selectedValue2 == "M^3"){
+              d = double.parse(equation) / 35195;
+              result = d.toStringAsFixed(precision);
+            }
+          }
+        }else if(_appbarTitle == "Velocidad"){
+          if(selectedValue1 == "Kmh"){
+            if(selectedValue2 == "Kmh"){
+              
+            }else if(selectedValue2 == "Mph"){
+              d = double.parse(equation) / 1.609;
+              result = d.toStringAsFixed(precision);
+            }
+          }else if(selectedValue1 == "Mph"){
+            if(selectedValue2 == "Mph"){
+
+            }else if(selectedValue2 == "Kmh"){
+              d = double.parse(equation) * 1.609;
+              result = d.toStringAsFixed(precision);
+            }
           }
         }
 
@@ -83,6 +280,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String? selectedValue1 = null;
   String? selectedValue2 = null;
+  String? auxSelectedValue1 = null;
+  String? auxSelectedValue2 = null;
+
+  final _controller = PageController();
 
   int _selectedConversion = 0;
   String _appbarTitle = "Calculadora";
@@ -165,7 +366,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   items: _listCmb, 
                                   onChanged: (value) {
                                     setState(() {
+                                      auxSelectedValue1 = selectedValue1;
                                       selectedValue1 = value;
+                                      if(selectedValue1 == selectedValue2){
+                                        selectedValue2 = auxSelectedValue1;
+                                      }
                                     });
                                   },
                                   isExpanded: true,
@@ -204,7 +409,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   items: _listCmb, 
                                   onChanged: (value) {
                                     setState(() {
+                                      auxSelectedValue2 = selectedValue2;
                                       selectedValue2 = value;
+                                      if(selectedValue1 == selectedValue2){
+                                        selectedValue1 = auxSelectedValue2;
+                                      }
                                     });
                                   },
                                   isExpanded: true,
@@ -252,6 +461,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ):Container(),
+              
+              //* Steps
+               _appbarTitle != "Calculadora" ? Container(
+                height: 140,
+                 child: PageView.builder(
+                  scrollDirection: Axis.horizontal,
+                  controller: _controller,
+                  itemCount: 2,
+                  itemBuilder: (context, i) {
+                    
+                    return StepContainer(
+                      index: i,
+                      equivalencia: '1 ${selectedValue1} es igual a 1000 ${selectedValue2}',
+                      conversion: '1 * 1000 = ${result}',
+                    );
+                  }
+              ),
+               ): Container(),
 
                 //* Teclado
                 Container(
