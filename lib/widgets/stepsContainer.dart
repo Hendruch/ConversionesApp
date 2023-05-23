@@ -17,36 +17,44 @@ class _StepContainerState extends State<StepContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: NeuContainer(
         shadow: false,
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  widget.index != 1? 
-                  GestureDetector(
-                    onTap: () {
-                      
-                    },
-                    child: Icon(Icons.arrow_forward_outlined))
-                  :Container(height: 25,)
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  widget.index != 1?
-                  Text(widget.equivalencia)
-                  : Text(widget.conversion)
-                ],
-              )
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                widget.index != 1? 
+                GestureDetector(
+                  onTap: () {
+                    
+                  },
+                  child: Icon(Icons.arrow_forward_outlined))
+                :Container(height: 25,)
+              ],
+            ),
+            SizedBox(height: 15,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                widget.index != 1?
+                Text(widget.equivalencia,
+                style: TextStyle(fontSize: 18),
+                )
+                : Flexible(
+                  child: Text(widget.conversion,
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                  ),
+                )
+              ],
+            )
+          ],
         ), 
         borderRadius: BorderRadius.circular(30), 
         padding: const EdgeInsets.all(20),

@@ -20,6 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
   double resultFontSize = 48.0;
   double d = 0.0;
   int precision = 2;
+  String operador = '';
+  double conv = 0.0;
+  bool displayCard = false;
 
   buttonPressed(String buttonText){
     setState(() {
@@ -39,57 +42,82 @@ class _HomeScreenState extends State<HomeScreen> {
       }else if(buttonText == "="){
         equationFontSize = 38.0;
         resultFontSize = 48.0;
+        displayCard = true;
         if(_appbarTitle == "Longitud"){
           if(selectedValue1 == "Metros"){
             if(selectedValue2 == "Metros"){
 
             }else if(selectedValue2 == "Pies"){
-              d = double.parse(equation) * 3.2808;
+              conv = 3.2808;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Pulgadas"){
-              d = double.parse(equation) * 39.37;
+              conv = 39.37;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Centimetros"){
-              d = double.parse(equation) * 100;
+              conv = 100;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Pies"){
             if(selectedValue2 == "Pies"){
 
             }else if(selectedValue2 == "Metros"){
-              d = double.parse(equation) * 0.3048;
+              conv = 0.3048;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Pulgadas"){
-              d = double.parse(equation) * 12;
+              conv = 12;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(8);
             }else if(selectedValue2 == "Centimetros"){
-              d = double.parse(equation) * 30.48;
+              conv = 30.48;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Pulgadas"){
             if(selectedValue2 == "Pulgadas"){
 
             }else if(selectedValue2 == "Metros"){
-              d = double.parse(equation) / 39.37;
+              conv = 39.37;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Pies"){
-              d = double.parse(equation) / 12;
+              conv = 12;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Centimetros"){
-              d = double.parse(equation) * 2.54;
+              conv = 2.54;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Centimetros"){
             if(selectedValue2 == "Centimetros"){
 
             }else if(selectedValue2 == "Metros"){
-              d = double.parse(equation) / 100;
+              conv = 100;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Pies"){
-              d = double.parse(equation) / 30.48;
+              conv = 30.48;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Pulgadas"){
-              d = double.parse(equation) / 2.54;
+              conv = 2.54;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }
           }
@@ -98,30 +126,42 @@ class _HomeScreenState extends State<HomeScreen> {
             if(selectedValue2 == "Horas"){
               
             }else if(selectedValue2 == "Minutos"){
-              d = double.parse(equation) * 60;
+              conv = 60;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Segundos"){
-              d = double.parse(equation) * 3600;
+              conv = 3600;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Minutos"){
             if(selectedValue2 == "Minutos"){
               
             }else if(selectedValue2 == "Horas"){
-              d = double.parse(equation) / 60;
+              conv = 60;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Segundos"){
-              d = double.parse(equation) * 60;
+              conv = 60;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Segundos"){
             if(selectedValue2 == "Segundos"){
               
             }else if(selectedValue2 == "Horas"){
-              d = double.parse(equation) / 3600;
+              conv = 3600;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Minutos"){
-              d = double.parse(equation) / 60;
+              conv = 60;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }
           }
@@ -130,30 +170,42 @@ class _HomeScreenState extends State<HomeScreen> {
             if(selectedValue2 == "Kilogramos"){
               
             }else if(selectedValue2 == "Libras"){
-              d = double.parse(equation) * 2.20462;
+              conv = 2.20462;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Gramos"){
-              d = double.parse(equation) * 1000;
+              conv = 1000;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Libras"){
             if(selectedValue2 == "Libras"){
             
             }else if(selectedValue2 == "Kilogramos"){
-              d = double.parse(equation) / 2.20462;
+              conv = 2.20462;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Gramos"){
-              d = double.parse(equation) * 453.592;
+              conv = 453.592;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Gramos"){
             if(selectedValue2 == "Gramos"){
             
             }else if(selectedValue2 == "Kilogramos"){
-              d = double.parse(equation) / 1000;
+              conv = 1000;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Libras"){
-              d = double.parse(equation) / 453.592;
+              conv = 453.592;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }
           }
@@ -162,9 +214,13 @@ class _HomeScreenState extends State<HomeScreen> {
             if(selectedValue2 == "M^2"){
             
             }else if(selectedValue2 == "Hectareas"){
+              conv = 10000;
+              operador = '/';
               d = double.parse(equation) / 10000;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Acres"){
+              conv = 4047;
+              operador = '/';
               d = double.parse(equation) / 4047;
               result = d.toStringAsFixed(precision);
             }
@@ -172,19 +228,27 @@ class _HomeScreenState extends State<HomeScreen> {
             if(selectedValue2 == "Hectareas"){
             
             }else if(selectedValue2 == "M^2"){
+              conv = 10000;
+              operador = '*';
               d = double.parse(equation) * 10000;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Acres"){
-              d = double.parse(equation) * 2.417;
+              conv = 2.417;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Acres"){
             if(selectedValue2 == "Acres"){
             
             }else if(selectedValue2 == "M^2"){
+              conv = 4047;
+              operador = '*';
               d = double.parse(equation) * 4047;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Hectareas"){
+              conv = 2.417;
+              operador = '/';
               d = double.parse(equation) / 2.417;
               result = d.toStringAsFixed(precision);
             }
@@ -194,30 +258,42 @@ class _HomeScreenState extends State<HomeScreen> {
             if(selectedValue2 == "Litros"){
 
             }else if(selectedValue2 == "M^3"){
-              d = double.parse(equation) / 1000;
+              conv = 1000;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Onzas"){
-              d = double.parse(equation) * 35.195;
+              conv = 35.195;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "M^3"){
             if(selectedValue2 == "M^3"){
 
             }else if(selectedValue2 == "Litros"){
-              d = double.parse(equation) * 1000;
+              conv = 1000;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "Onzas"){
-              d = double.parse(equation) * 35195;
+              conv = 35195;
+              operador = '*';
+              d = double.parse(equation) * conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Onzas"){
             if(selectedValue2 == "Onzas"){
 
             }else if(selectedValue2 == "Litros"){
-              d = double.parse(equation) / 35.195;
+              conv = 35.195;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }else if(selectedValue2 == "M^3"){
-              d = double.parse(equation) / 35195;
+              conv = 35195;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }
           }
@@ -226,13 +302,17 @@ class _HomeScreenState extends State<HomeScreen> {
             if(selectedValue2 == "Kmh"){
               
             }else if(selectedValue2 == "Mph"){
-              d = double.parse(equation) / 1.609;
+              conv = 1.609;
+              operador = '/';
+              d = double.parse(equation) / conv;
               result = d.toStringAsFixed(precision);
             }
           }else if(selectedValue1 == "Mph"){
             if(selectedValue2 == "Mph"){
 
             }else if(selectedValue2 == "Kmh"){
+              conv = 1.609;
+              operador = '*';
               d = double.parse(equation) * 1.609;
               result = d.toStringAsFixed(precision);
             }
@@ -322,6 +402,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   setState(
                     () {
+                      displayCard = false;
                       _selectedConversion = index;
                       _appbarTitle = _conversion[_selectedConversion];
                       selectedValue1 = null;
@@ -463,7 +544,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ):Container(),
               
               //* Steps
-               _appbarTitle != "Calculadora" ? Container(
+               ((_appbarTitle != "Calculadora") && displayCard == true) ? Container(
                 height: 140,
                  child: PageView.builder(
                   scrollDirection: Axis.horizontal,
@@ -473,8 +554,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     
                     return StepContainer(
                       index: i,
-                      equivalencia: '1 ${selectedValue1} es igual a 1000 ${selectedValue2}',
-                      conversion: '1 * 1000 = ${result}',
+                      equivalencia: (operador == '*')? '1 ${selectedValue1} es igual a ${conv} ${selectedValue2}':'1 ${selectedValue2} es igual a ${conv} ${selectedValue1}',
+                      conversion: '${equation} ${operador} ${conv} = ${result} ${selectedValue2}',
                     );
                   }
               ),
